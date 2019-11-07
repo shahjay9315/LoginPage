@@ -3,7 +3,8 @@
 session_start();
  
 
- if(isset($_SESSION['loggedin']) == true){
+ if(isset($_SESSION['loggedin']) == true)
+ {
 
     header("location: welcome.php");
 
@@ -26,7 +27,7 @@ define('DB_NAME', 'jay');
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 
-// Check connection
+// Check connection 
 
 if($link === false){
 
@@ -34,7 +35,7 @@ if($link === false){
 
 }
 
-if (mysqli_connect_errno())
+if (mysqli_connect_error())
 
   {
 
@@ -42,9 +43,11 @@ if (mysqli_connect_errno())
 
   }
 
+    // Fetching variables of the form front end which travels in URL
+
+
   if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-       // Fetching variables of the form front end which travels in URL
 
 $name = $_POST['username'];
 
@@ -60,23 +63,27 @@ $sql="select * from Sample where username = '$name'";
 // result below
 $result=mysqli_query($link,$sql);
 
-        if (mysqli_num_rows($result) > 0) {
+        if (mysqli_num_rows($result) > 0) 
+        {
 
         // output data of each row
 
         $row = mysqli_fetch_assoc($result);
+
 //verifying the table coloumn names from mysql
+
         $uname = $row['username'];
         $pass = $row['password'];
 
-        if ($uname == $name && $password == $pass ){
+        if ($uname == $name && $password == $pass )
+        {
 
          echo "<script type='text/javascript'>alert('User Logged In Sucessfully ');</script>";
       
 //for welcome page to open / redirect upon sucessfull login
          session_start();
           $_SESSION['user'] = $uname;
-         $_SESSION['loggedin'] == true; //main
+          $_SESSION['loggedin'] == true; //main
 
          header("location: welcome.php");
          exit;
@@ -88,10 +95,7 @@ $result=mysqli_query($link,$sql);
 
         }
 
- 
 }
-
-
 
 }
 

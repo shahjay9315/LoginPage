@@ -1,4 +1,8 @@
 <?php
+
+//Initalize and end the session page 
+
+
  // session_destroy();
 session_start();
 
@@ -11,16 +15,15 @@ if(!isset($_SESSION['loggedin']) !== true)
     exit;
 
 }
-
  
-
 ?>
+
 
 <html>
 
     <head>
 
-               <title>Welcome To My Data </title>
+               <title>Welcome Jay </title>
 
 
     </head>
